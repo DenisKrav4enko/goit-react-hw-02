@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Title,
   Wrapper,
   NameOfStat,
   CountOfStat,
@@ -8,25 +7,18 @@ import {
   StatsContainer,
 } from './StyledComponents';
 
-const Body = props => {
+const Statistics = props => {
   const {
-    state,
+    bad,
+    good,
+    total,
     report,
+    neutral,
+    positivePercentage,
   } = props;
-
-  const countTotalFeedback = () => {
-    return state.good + state.neutral + state.bad
-  }
-
-  const countPositiveFeedbackPercentage = () => {
-    return Math.round(100 * state.good / countTotalFeedback())
-  }
 
   return (
     <Wrapper>
-      <Title>
-        Statistics
-      </Title>
       <StatsContainer>
         {report.map(item => (
           <ItemContainer key={item.id}>
@@ -34,7 +26,7 @@ const Body = props => {
               {item?.title ?? ''}:&nbsp;
             </NameOfStat>
             <CountOfStat>
-              {state?.[item.label] ?? ''}
+              {props[item.label]}
             </CountOfStat>
           </ItemContainer>))
         }
@@ -43,7 +35,7 @@ const Body = props => {
             Total:&nbsp;
           </NameOfStat>
           <CountOfStat>
-            {countTotalFeedback()}
+            {total}
           </CountOfStat>
         </ItemContainer>
         <ItemContainer>
@@ -51,8 +43,8 @@ const Body = props => {
             Positive feedback:&nbsp;
           </NameOfStat>
           <CountOfStat>
-            {countTotalFeedback() !== 0
-              ? countPositiveFeedbackPercentage()
+            {total !== 0
+              ? positivePercentage
               : 0
             }%
           </CountOfStat>
@@ -62,4 +54,4 @@ const Body = props => {
   )
 }
 
-export default Body;
+export default Statistics;

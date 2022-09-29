@@ -2,18 +2,11 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 250px;
-  height: 180px;
-  padding: 15px 0;
+  height: 152px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-`;
-
-export const Title = styled.h2`
-  font-size: 24px;
-  font-weight: 700;
-  color: #1d1e1f;
 `;
 
 export const StatsContainer = styled.div`
